@@ -1,0 +1,85 @@
+'''
+Crie um programa que possa:
+- Inserir o nome de um usuário em uma lista
+- Exibir a lista de nomes
+- Ordenar os nomes
+- Alterar o nome na lista
+- Excluir um nome da lista
+- Sair do programa
+O programa deverá exibir um menu e o usuário irá escolher a opção desejada do menu.
+Ao terminar, envie para o GitHub e poste o link do repositório no Classroom.
+'''
+
+# biblioteca
+import os
+
+# Lista de carros
+carros = []
+
+# Loop
+while True:
+    # menu
+    print("1 - Cadastrar novo carro")
+    print("2 - Exibir lista.")
+    print("3 - Ordenar lista.")
+    print("4 - Alterar carro da lista.")
+    print("5 - Excluir carro da lista.")
+    print("6- Sair do programa.")
+
+    # usuário informa a opção escolhida
+    opcao = input("Opção desejada: ")
+
+    # limpa console
+    os.system("cls")
+
+    # o programa verifica a opção do usuários
+    match opcao:
+        case "1":
+            novo_carro = input("Informe o carro a ser cadastrado: ")
+            carros.append(novo_carro)
+            print(f"{novo_carro} cadastrado com sucesso.")
+            continue
+        case "2":
+            print("Lista:\n")
+            for i in range(len(carros)):
+                print(f"Índice {i}: {carros[i]}.")
+            print("\n")
+            continue
+        case "3":
+            carros.sort()
+            print('Lista ordenada com sucesso')
+            continue
+        case "4":
+            try:
+                indice = int(input("Informe o índice do carro a ser alterado: "))
+                confirmar = input(f"Deseja alterar o carro {carros[indice]}? Digite 'sim' para confirmar:")
+                
+                if confirmar == "sim":
+                    carros[indice] = input("Informe o nove o carro: ")
+                    print(f"Carro alterado com sucesso!")
+                else:
+                    print("Carro não foi alterado")
+            except Exception as e:
+                print(f"Não foi possível alterar. {e}.")
+            finally:
+                continue
+        case "5":
+            try:
+                indice = int(input("Informe o índice do carro que deseja excluir: "))
+                confirmar = input(f"Deseja Excluir o carro {carros[indice]} da lita? Digite 'sim' para confirmar: ")
+                
+                if confirmar == "sim":
+                    del(carros[indice])
+                    print("Carro excluído com sucesso.")
+                else:
+                    print("Carro não foi excluído.")
+            except Exception as e:
+                print(f"Não foi polssível exclur carro. {e}.")
+            finally:
+                continue
+        case "6":
+            print("Programa encerrado.")
+            break
+        case _:
+            print("Opção inválida.")
+            continue
